@@ -6,7 +6,7 @@ import Footer from "./Components/Footer";
 function App() {
   return (
     <div className="App">
-      <h1>MINT NFT</h1>
+      <h1 className='heading'>MINT NFT</h1>
 
         <Form/>
         <Footer/>

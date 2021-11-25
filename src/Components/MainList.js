@@ -1,16 +1,21 @@
 import React, {useState,useEffect} from "react";
-
+import './MainList.css'
 const MainList=()=>{
     let counter = 0;
     const [data,setData]=useState([])
      const handleAddToList=()=>{
+        let newData={
+            inp1:document.getElementById('inp1').value,
+            inp2:document.getElementById('inp2').value,
+            inp3:document.getElementById('inp3').value,
+            k:data.length+1
+        }
 
-      setData([...data,{
-          inp1:document.getElementById('inp1').value,
-          inp2:document.getElementById('inp2').value,
-          inp3:document.getElementById('inp3').value,
-          k:data.length
-      }])
+        if(!newData.inp1 || !newData.inp2 || !newData.inp3){
+            alert("Enter all values")
+            return;
+        }
+      setData([...data,newData])
          document.getElementById('inp1').value=''
          document.getElementById('inp2').value=''
          document.getElementById('inp3').value=''
@@ -29,7 +34,7 @@ const MainList=()=>{
             setData([])
         };
     }, []);
-    var listItems=data.map((item)=>{
+    let listItems=data.map((item)=>{
         return(
         <tr>
             <td>
@@ -49,7 +54,7 @@ const MainList=()=>{
     })
     return (
     <div>
-        <table>
+        <table className='tabl'>
             <th>S.No</th>
             <th>Name of the Creator</th>
             <th>
@@ -60,23 +65,22 @@ const MainList=()=>{
 
             <tr>
                 <td>
-                   <b>{data.length}</b>
+                   <b>{data.length+1}</b>
                 </td>
                 <td>
-                    <input type='text'  id='inp1'/>
+                    <input type='text'  id='inp1' required='true' placeholder='START WITH @'/>
                 </td>
                 <td>
-                    <input type='text' id='inp2'/>
+                    <input type='text' id='inp2' placeholder='SPECIFY A ROLE'/>
                 </td>
                 <td>
-                    <input type='text' id='inp3'/>
+                    <input type='number' id='inp3' placeholder='ENTER A %'/>
                 </td>
-
 
             </tr>
         </table>
-        <button onClick={handleAddToList}>+ Add more collaborators</button>
-        <span>Name of the creator Role Royalty Split</span>
+        <button onClick={handleAddToList} className='btn'>+ Add more collaborators</button>
+
 
 
     </div>)
